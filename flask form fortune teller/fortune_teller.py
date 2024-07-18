@@ -5,16 +5,16 @@ app = Flask(__name__)
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        # Extract birth_month from the form data
+       
         birth_month = request.form.get('birth_month', '')
-        # Redirect to the 'fortune' route with birth_month as a query parameter
+        
         return redirect(url_for('fortune', birth_month=birth_month))
    
     return render_template('home.html')
 
 @app.route('/fortune')
 def fortune():
-    # Extract birth_month from the query parameters
+   
     birth_month = request.args.get('birth_month', '')
     
     fortunes = ["Mysticism", "Augury", "Seer", "Divination", "Clairvoyance", "Tarot", "Astrology", "Prophecy", "Cartomancy", "Runes"]
