@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home - meow meow Fortune Teller</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Hello {{ name }}</h1>
+        <p>In the dimly lit corner of an ancient library, where shadows dance and whispers of old magic linger, resides Meomeoe, the enigmatic feline fortune teller..meow meow ?????.</p>
+        <a href="{{ url_for('fortune') }}" class="mt-20">meow, Do you want your fortune?</a>
+    </div>
+</body>
+</html>
