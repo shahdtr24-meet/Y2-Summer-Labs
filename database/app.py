@@ -8,13 +8,11 @@ firebaseConfig = {
     "projectId": "auth-lab-33f74",
     "storageBucket": "auth-lab-33f74.appspot.com",
     "messagingSenderId": "696774828142",
-    "appId": "1:696774828142:web:27352bfbbcf4fa37c2867f",
-    "databaseURL":"https://auth-lab-33f74-default-rtdb.firebaseio.com/"
+    "appId": "1:696774828142:web:27352bfbbcf4fa37c2867f"
 }
 
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
-db = firebase.database()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super-secret-key'
@@ -24,19 +22,10 @@ def signup():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        full_name = request.form['full_name']
-        username = request.form['username']
         try:
             user = auth.create_user_with_email_and_password(email, password)
             session['user'] = user
             session['quotes'] = []
-            uid = user['localId']
-            user_data = {
-                "full_name": full_name,
-                "email": email,
-                "username": username
-            }
-            db.child("Users").child(uid).set(user_data)
             flash('Account created successfully!', 'success')
             return redirect(url_for('home'))
         except Exception as e:
@@ -65,15 +54,8 @@ def home():
         return redirect(url_for('signin'))
 
     if request.method == 'POST':
-        quote_text = request.form['quote']
-        said_by = request.form['said_by']
-        uid = session['user']['localId']
-        quote = {
-            "text": quote_text,
-            "said_by": said_by,
-            "uid": uid
-        }
-        db.child("Quotes").push(quote)
+        quote = request.form['quote']
+        session['quotes'].append(quote)
         flash('Quote submitted successfully!', 'success')
         return redirect(url_for('thanks'))
     return render_template('home.html')
@@ -91,13 +73,13 @@ def display():
         flash('Please sign in to access this page', 'warning')
         return redirect(url_for('signin'))
 
-    quotes = db.child("Quotes").get().val()
+    quotes = session.get('quotes', [])
     return render_template('display.html', quotes=quotes)
 
 @app.route('/signout')
 def signout():
     session.pop('user', None)
-    session.pop('quotes', None) 
+    session.pop('quotes', None)
     flash('Signed out successfully!', 'success')
     return redirect(url_for('signin'))
 

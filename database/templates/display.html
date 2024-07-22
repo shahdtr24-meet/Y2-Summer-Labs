@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Display Quotes</title>
+    <title>Quotes</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <header>Authentication & database Lab</header>
+    <header>Authentication Lab</header>
     <div class="container">
-        <h1>Submitted Quotes</h1>
+        <h1>All Quotes</h1>
         <ul>
-            {% for key, quote in quotes.items() %}
-            <li>"{{ quote['text'] }}" - {{ quote['said_by'] }}</li>
+            {% for quote in quotes %}
+                <li>{{ quote }}</li>
             {% endfor %}
         </ul>
         <a href="/home">Back to Home</a>
