@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>Authentication Lab</header>
+    <div class="container">
+        <h1>Home</h1>
+        <form action="/home" method="POST">
+            <input type="text" name="quote" placeholder="Type your quote here" required><br>
+            <button type="submit">Submit</button>
+        </form>
+        <a href="/signout">Sign Out</a>
+    </div>
+</body>
+</html>
