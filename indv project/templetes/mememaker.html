@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Maker - {{ name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            padding: 20px;
+        }
+        #canvas-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            margin: 20px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            cursor: crosshair;
+        }
+        .tools {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .color-picker {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Create a Meme - {{ name }}</h1>
+    <div id="canvas-container">
+        <canvas id="memeCanvas" width="800" height="600"></canvas>
+    </div>
+    <div class="tools">
+        <button id="saveMeme">Save Meme</button>
+        <button id="clearCanvas">Clear Canvas</button>
+        <div class="color-picker">
+            <label for="colorPicker">Select Pen Color: </label>
+            <input type="color" id="colorPicker" value="#000000">
+        </div>
+    </div>
+    <script>
+        const canvas = document.getElementById('memeCanvas');
+        const ctx = canvas.getContext('2d');
+        const colorPicker = document.getElementById('colorPicker');
+        let drawing = false;
+        let penColor = colorPicker.value;
+
+        
+        function loadImage(src) {
+            const img = new Image();
+            img.src = src;
+            img.onload = () => {
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            };
+        }
+
+        // Change pen color
+        colorPicker.addEventListener('input', () => {
+            penColor = colorPicker.value;
+        });
+
+        // Drawing on canvas
+        canvas.addEventListener('mousedown', () => {
+            drawing = true;
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            drawing = false;
+            ctx.beginPath();
+        });
+
+        canvas.addEventListener('mousemove', (event) => {
+            if (drawing) {
+                const rect = canvas.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                ctx.strokeStyle = penColor;
+                ctx.lineWidth = 5;
+                ctx.lineCap = 'round';
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+            }
+        });
+
+        // Save meme
+        document.getElementById('saveMeme').addEventListener('click', () => {
+            const dataURL = canvas.toDataURL('image/png');
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '{{ url_for('mememaker', name=name) }}';
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'memeData';
+            input.value = dataURL;
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
+        });
+
+        
+        document.getElementById('clearCanvas').addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        
+        loadImage('{{ url_for('static', filename=name + ".jpeg") }}');
+    </script>
+</body>
+</html>

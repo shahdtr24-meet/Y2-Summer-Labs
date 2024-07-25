@@ -1,0 +1,167 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+h2 {
+    color: #1e90ff;
+}
+
+form {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+input[type="email"], input[type="password"], input[type="text"], button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4169e1;
+}
+
+.error {
+    color: red;
+}
+
+a {
+    color: #1e90ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+canvas {
+    border: 1px solid #000;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    background-color: #4682b4;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #4682b4;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #5a9bd4;
+}
+
+form {
+    display: inline;
+}
+/* Home Page Styles */
+.home-header {
+    background-color: #003366;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+.home-header h1 {
+    margin: 0;
+}
+
+.home-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.home-nav a:hover {
+    text-decoration: underline;
+}
+
+.home-main {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.home-meme-options {
+    text-align: center;
+}
+
+.home-meme-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.home-meme-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.home-meme-card:hover {
+    transform: scale(1.05);
+}
+
+.home-meme-image {
+    width: 100%;
+    height: auto;
+    max-width: 200px; /* Adjust as needed */
+}
+
+.home-meme-link {
+    display: block;
+    padding: 1rem;
+    background-color: #003366;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.home-meme-link:hover {
+    background-color: #002244;
+}
+
+.home-footer {
+    background-color: #003366;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}

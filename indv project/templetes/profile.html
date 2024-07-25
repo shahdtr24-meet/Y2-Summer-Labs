@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - {{ user['email'] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Profile</h1>
+    <p>Welcome, {{ user['email'] }}!</p>
+    <a href="{{ url_for('signout') }}">Sign out</a>
+    <h2>Your Memes</h2>
+    <ul>
+        {% if memes %}
+            {% for meme_id, meme in memes.items() %}
+                <li>
+                    <img src="{{ meme['url'] }}" alt="Meme" style="max-width: 200px;"/>
+                    <form action="{{ url_for('delete_meme', meme_id=meme_id) }}" method="post" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        {% else %}
+            <p>No memes found.</p>
+        {% endif %}
+    </ul>
+    <a href="{{ url_for('home') }}">Back to Home</a>
+</body>
+</html>

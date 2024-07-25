@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Meme Maker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            padding: 20px;
+        }
+        .meme-maker-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        .meme-maker-links a {
+            display: block;
+            width: 150px;
+            height: 150px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .meme-maker-links img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .meme-maker-links a:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Meme Maker</h1>
+    <div class="meme-maker-links">
+        <a href="{{ url_for('mememaker', name='amir') }}">
+            <img src="{{ url_for('static', filename='amir.jpeg') }}" alt="Amir">
+        </a>
+        <a href="{{ url_for('mememaker', name='shelly') }}">
+            <img src="{{ url_for('static', filename='shelly.jpeg') }}" alt="Shelly">
+        </a>
+        <a href="{{ url_for('mememaker', name='watan') }}">
+            <img src="{{ url_for('static', filename='watan.jpeg') }}" alt="Watan">
+        </a>
+        <a href="{{ url_for('mememaker', name='razan') }}">
+            <img src="{{ url_for('static', filename='razan.jpeg') }}" alt="Razan">
+        </a>
+        <a href="{{ url_for('mememaker', name='basem') }}">
+            <img src="{{ url_for('static', filename='basem.jpeg') }}" alt="Basem">
+        </a>
+        <a href="{{ url_for('mememaker', name='shalev') }}">
+            <img src="{{ url_for('static', filename='shalev.jpeg') }}" alt="Shalev">
+        </a>
+        <a href="{{ url_for('mememaker', name='lil') }}">
+            <img src="{{ url_for('static', filename='lil.jpeg') }}" alt="Lil">
+        </a>
+    </div>
+</body>
+</html>
+
