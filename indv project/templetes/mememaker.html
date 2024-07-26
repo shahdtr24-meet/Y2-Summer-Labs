@@ -79,12 +79,12 @@
             };
         }
 
-        // Change pen color
+        
         colorPicker.addEventListener('input', () => {
             penColor = colorPicker.value;
         });
 
-        // Drawing on canvas
+        
         canvas.addEventListener('mousedown', () => {
             drawing = true;
         });
@@ -109,7 +109,7 @@
             }
         });
 
-        // Save meme
+        
         document.getElementById('saveMeme').addEventListener('click', () => {
             const dataURL = canvas.toDataURL('image/png');
             const form = document.createElement('form');
